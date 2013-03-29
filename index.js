@@ -5,7 +5,8 @@ var defaults = require("defaults");
 
 // Default config
 var config = {
-  priority: 0,
+  facility: 14,
+  severity: 6,
   version: 1,
   hostname: window.location.hostname,
   app_name: "app",
@@ -17,7 +18,7 @@ module.exports = exports = function(opts) {
 
   defaults(opts, config);
 
-  var prefix = "<"+opts.priority+">"+opts.version
+  var prefix = "<"+(opts.priority || opts.facility*8+opts.severity)+">"+opts.version
     , system = [opts.hostname, opts.app_name, opts.proc_id, "- -"].join(" ");
 
   return function() {
