@@ -41,4 +41,6 @@ exports.patch = function(opts) {
 
   console.log = log(_log);
   console.error = log(_error);
+
+  return format;
 };
