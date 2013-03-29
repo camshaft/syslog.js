@@ -12,7 +12,7 @@ var config = {
   proc_id: "browser"
 };
 
-module.exports = function(opts) {
+module.exports = exports = function(opts) {
   if(!opts) opts = {};
 
   defaults(opts, config);
@@ -25,4 +25,21 @@ module.exports = function(opts) {
     var msg = [prefix, (new Date).toISOString(), system, message].join(" ");
     return [msg.length,msg].join(" ");
   };
+};
+
+exports.patch = function(opts) {
+  var _log = console.log
+    , _error = console.error
+    , format = exports(opts);
+
+  function log (out) {
+    return function() {
+      var str = format.apply(null, arguments);
+      out.call(console, str);
+      return str;
+    };
+  };
+
+  console.log = log(_log);
+  console.error = log(_error);
 };
