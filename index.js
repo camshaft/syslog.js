@@ -8,9 +8,8 @@ var config = {
   facility: 14,
   severity: 6,
   version: 1,
-  hostname: window.location.hostname,
   app_name: "app",
-  proc_id: "browser"
+  proc_id: "web.1"
 };
 
 module.exports = exports = function(opts) {
@@ -26,22 +25,4 @@ module.exports = exports = function(opts) {
     var msg = [prefix, (new Date).toISOString(), system, message].join(" ");
     return [msg.length,msg].join(" ");
   };
-};
-
-exports.patch = function(opts) {
-  var _log = console.log
-    , _error = console.error
-    , format = exports(opts);
-
-  function log (out) {
-    return function() {
-      out.apply(console, arguments);
-      return format.apply(null, arguments);
-    };
-  };
-
-  console.log = log(_log);
-  console.error = log(_error);
-
-  return format;
 };
