@@ -34,9 +34,8 @@ exports.patch = function(opts) {
 
   function log (out) {
     return function() {
-      var str = format.apply(null, arguments);
-      out.call(console, str);
-      return str;
+      out.apply(console, arguments);
+      return format.apply(null, arguments);
     };
   };
 
