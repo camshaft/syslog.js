@@ -6,7 +6,7 @@
   "keywords": [],
   "dependencies": {
     "avetisk/defaults": "*",
-    "component/user-agent-parser": "*"
+    "component/pad": "*"
   },
   "development": {},
   "license": "MIT",
